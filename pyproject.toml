@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "duckdb-webhook-gateway"
+version = "0.1.0"
+description = "A webhook gateway powered by DuckDB for routing, transforming, and auditing webhook traffic"
+requires-python = ">=3.8"
+dependencies = [
+    "duckdb>=0.8.1",
+    "fastapi>=0.95.0",
+    "uvicorn>=0.22.0",
+    "httpx>=0.24.0",
+    "pandas>=2.0.0",
+    "pydantic>=1.10.7",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.3.1",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "asyncio: mark test as requiring asyncio",
+    "integration: mark test as an integration test",
+]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+log_cli = true
+log_cli_level = "INFO"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]

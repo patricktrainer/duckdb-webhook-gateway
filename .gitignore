@@ -1,3 +1,6 @@
+node_modules/
+frontend/node_modules/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -172,3 +175,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+**/.claude/settings.local.json
