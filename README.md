@@ -18,6 +18,8 @@ DuckDB serves as both the storage layer and the computational engine, enabling c
 - **Built-in audit trail** of all webhook events (raw and transformed)
 - **Interactive webhook testing** with visualization of transformed data
 
+![webhookui](etc/duckdb-webhook-ui.gif)
+
 ## Real-World Use Cases
 
 ### 1. DevOps Event Router
