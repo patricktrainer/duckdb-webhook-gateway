@@ -1,0 +1,14 @@
+# Core dependencies
+duckdb>=0.8.1
+fastapi>=0.95.0
+uvicorn>=0.22.0
+httpx>=0.24.0
+pandas>=2.0.0
+pydantic>=1.10.7
+python-multipart>=0.0.5
+aiofiles>=0.8.0
+
+# Testing dependencies
+pytest>=7.3.1
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
