@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - WEBHOOK_GATEWAY_API_KEY=your_api_key_here
+      - PYTHONUNBUFFERED=1  # Makes Python output unbuffered for better logs
+      - DUCKDB_PATH=/app/data/webhook_gateway.db
+      - DUCKDB_MAX_WORKERS=4
+    volumes:
+      - webhook-data:/app/data
+      - ./src:/app/src  # For development hot-reloading
+      - ./static:/app/static  # For static files
+    restart: unless-stopped
+    # Disable healthcheck for now
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -s -f http://localhost:8000/ || exit 1"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 15s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    # Simple dependency without healthcheck condition
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  webhook-data:
+    driver: local

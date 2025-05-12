@@ -1,0 +1,40 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements file
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir python-multipart aiofiles
+
+# Create directories
+RUN mkdir -p static static/frontend
+
+# Copy application code
+COPY src/ ./src/
+COPY static/ ./static/
+COPY pyproject.toml setup.py ./
+
+# Copy frontend build if it exists
+COPY frontend/build/ ./frontend/build/
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV WEBHOOK_GATEWAY_API_KEY=default_key
+
+# Volume for persistent data
+VOLUME /app/data
+
+# Expose the port
+EXPOSE 8000
+
+# Run the application
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
