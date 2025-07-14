@@ -10,7 +10,8 @@ from textwrap import dedent
 import pandas as pd
 import pytest
 
-from src.app import DuckDBManager, WebhookConfig
+from src.database import DatabaseConnection
+from src.models.webhook import WebhookConfig
 from tests.test_helper import ensure_str
 
 

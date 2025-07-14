@@ -11,7 +11,7 @@ from unittest.mock import patch, MagicMock
 import pytest
 from fastapi import status
 
-from src.app import app
+from src.main import app
 
 
 class TestAuthenticationEndpoints:

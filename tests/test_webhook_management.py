@@ -6,7 +6,7 @@ Tests for webhook registration and retrieval functionality
 import asyncio
 import pytest
 
-from src.app import WebhookConfig
+from src.models.webhook import WebhookConfig
 from .test_helper import ensure_str
 
 

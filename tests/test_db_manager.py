@@ -11,7 +11,7 @@ from datetime import datetime
 import pytest
 import pandas as pd
 
-from src.app import DuckDBManager
+from src.database import DatabaseConnection
 from tests.test_helper import ensure_str
 
 

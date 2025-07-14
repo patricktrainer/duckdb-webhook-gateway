@@ -16,7 +16,7 @@ from fastapi.responses import JSONResponse
 import uvicorn
 import threading
 
-from src.app import app as webhook_gateway_app
+from src.main import app as webhook_gateway_app
 
 
 # Test destination server to receive forwarded webhooks

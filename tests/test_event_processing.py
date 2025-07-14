@@ -12,7 +12,7 @@ from unittest.mock import patch, MagicMock
 import pytest
 import pandas as pd
 
-from src.app import process_webhook
+from src.services.webhook_processing_service import WebhookProcessingService
 from tests.test_helper import ensure_str
 
 
