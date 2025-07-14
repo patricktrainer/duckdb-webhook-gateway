@@ -87,7 +87,11 @@ pip install -e .
 
 4. Run the application:
 ```bash
-python -m src.app
+# Option 1: Using the installed command
+webhook-gateway
+
+# Option 2: Using Python module
+python -m src.main
 ```
 
 The server will start on `http://localhost:8000`.
@@ -113,7 +117,11 @@ cd duckdb-webhook-gateway
 
 3. Build and start the containers:
 ```bash
+# For development (with hot-reloading)
 docker-compose up -d
+
+# For production (optimized)
+docker-compose -f docker-compose.prod.yml up -d
 ```
 
 4. Access the application:
@@ -125,6 +133,9 @@ docker-compose up -d
 You can customize the Docker deployment by editing the environment variables in `docker-compose.yml`:
 
 - `WEBHOOK_GATEWAY_API_KEY`: API key for authenticating with the webhook gateway
+- `DUCKDB_PATH`: Path to the DuckDB database file (default: `/app/data/webhook_gateway.db`)
+- `DUCKDB_MAX_WORKERS`: Maximum number of worker threads for DuckDB (default: `4`)
+- `ENVIRONMENT`: Set to `production` for optimized performance (no hot-reloading)
 
 #### Data Persistence
 
