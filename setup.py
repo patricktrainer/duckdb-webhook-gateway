@@ -13,5 +13,10 @@ setup(
         "pandas>=2.0.0",
         "pydantic>=1.10.7",
     ],
+    entry_points={
+        "console_scripts": [
+            "webhook-gateway=src.main:main",
+        ],
+    },
     python_requires=">=3.7",
 )

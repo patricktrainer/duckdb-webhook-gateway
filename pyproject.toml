@@ -16,6 +16,9 @@ dependencies = [
     "pydantic>=1.10.7",
 ]
 
+[project.scripts]
+webhook-gateway = "src.main:main"
+
 [project.optional-dependencies]
 test = [
     "pytest>=7.3.1",

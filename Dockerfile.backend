@@ -29,6 +29,7 @@ COPY frontend/build/ ./frontend/build/
 # Set environment variables
 ENV PYTHONPATH=/app
 ENV WEBHOOK_GATEWAY_API_KEY=default_key
+ENV ENVIRONMENT=development
 
 # Volume for persistent data
 VOLUME /app/data
@@ -37,4 +38,9 @@ VOLUME /app/data
 EXPOSE 8000
 
 # Run the application
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# Use --reload only in development mode
+CMD if [ "$ENVIRONMENT" = "production" ]; then \
+        uvicorn src.main:app --host 0.0.0.0 --port 8000; \
+    else \
+        uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload; \
+    fi
